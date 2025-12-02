@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2erdr320pa43"]
+
+[ext_resource type="Script" uid="uid://dxo4ujuxg1w5i" path="res://character/enemy/enemy_fly.gd" id="1_s0k75"]
+[ext_resource type="Texture2D" uid="uid://wmsw1qe1ybcj" path="res://asset/player/fall.png" id="2_mxif0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mxif0"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_light_detect"]
+radius = 20.0
+
+[node name="EnemyFly" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 16
+collision_mask = 19
+script = ExtResource("1_s0k75")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_mxif0")
+
+[node name="Body" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mxif0")
+
+[node name="LightDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LightDetector"]
+shape = SubResource("CircleShape2D_light_detect")
+
+[connection signal="area_entered" from="LightDetector" to="." method="_on_light_detector_area_entered"]
+[connection signal="area_exited" from="LightDetector" to="." method="_on_light_detector_area_exited"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgb4omuskx68e"]
+
+[ext_resource type="Texture2D" uid="uid://dov8ng6b714ft" path="res://asset/Street_Decor/Streetlight_A.png" id="1_kf7mr"]
+[ext_resource type="Script" uid="uid://dg80va8156xdg" path="res://component/street_light.gd" id="1_vmuse"]
+[ext_resource type="PackedScene" uid="uid://di3r3b4jvohoi" path="res://component/light.tscn" id="2_dy02d"]
+
+[node name="StreetLight" type="Node2D"]
+script = ExtResource("1_vmuse")
+
+[node name="StreetLightImage" type="TextureRect" parent="."]
+offset_right = 200.0
+offset_bottom = 255.0
+texture = ExtResource("1_kf7mr")
+expand_mode = 1
+
+[node name="lightSceneL" parent="." instance=ExtResource("2_dy02d")]
+position = Vector2(54, 2)
+
+[node name="lightSceneR" parent="." instance=ExtResource("2_dy02d")]
+position = Vector2(150, 3)
+light_color = Color(0.6313726, 0.6313726, 0.53333336, 1)

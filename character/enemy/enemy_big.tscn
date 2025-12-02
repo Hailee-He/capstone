@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpsh1h7x6sj6a"]
+
+[ext_resource type="Script" uid="uid://cqef3f6l0rdd1" path="res://character/enemy/enemy_big.gd" id="1_pplcj"]
+[ext_resource type="Texture2D" uid="uid://bsf54pd0rs3j8" path="res://asset/player/0_Demons_of_Darkness_Slashing_000.png" id="2_nk047"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nk047"]
+radius = 48.0
+
+[node name="EnemyBig" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 8
+collision_mask = 11
+script = ExtResource("1_pplcj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, -38)
+scale = Vector2(0.30611113, 0.28)
+texture = ExtResource("2_nk047")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nk047")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(98, 0)

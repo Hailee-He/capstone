@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://t6748hxu6wla"]
+
+[ext_resource type="Script" uid="uid://c1484jill5m3p" path="res://character/player/player.gd" id="1_player"]
+[ext_resource type="Texture2D" uid="uid://wusdd2fc3qt7" path="res://asset/player/Running_000.png" id="1_y0s34"]
+[ext_resource type="PackedScene" uid="uid://di3r3b4jvohoi" path="res://component/light.tscn" id="3_gtsfv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gtsfv"]
+radius = 21.213203
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_health_bg"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_health_fill"]
+bg_color = Color(0.862745, 0.0784314, 0.235294, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 3
+collision_mask = 61
+script = ExtResource("1_player")
+
+[node name="FlashLight" parent="." instance=ExtResource("3_gtsfv")]
+position = Vector2(-10, 10)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.093)
+texture = ExtResource("1_y0s34")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 4)
+shape = SubResource("CircleShape2D_gtsfv")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -25.0
+offset_top = -40.0
+offset_right = 25.0
+offset_bottom = -35.0
+theme_override_styles/background = SubResource("StyleBoxFlat_health_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_health_fill")
+value = 100.0
+show_percentage = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -100)
+limit_left = 0
+limit_top = 0
+limit_bottom = 648
+position_smoothing_enabled = true

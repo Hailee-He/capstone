@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cahsjhdpq5dke"]
+
+[ext_resource type="Script" uid="uid://c7se1rkn6py4v" path="res://character/enemy/enemy_hurt.gd" id="1_jeqem"]
+[ext_resource type="Texture2D" uid="uid://bsf54pd0rs3j8" path="res://asset/player/0_Demons_of_Darkness_Slashing_000.png" id="2_iw3ni"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iw3ni"]
+radius = 33.01515
+
+[node name="EnemyHurt" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_jeqem")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.143)
+texture = ExtResource("2_iw3ni")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemy"]]
+position = Vector2(-2, 12)
+shape = SubResource("CircleShape2D_iw3ni")
+debug_color = Color(0.8423226, 0.34556562, 0.43295512, 0.41960785)

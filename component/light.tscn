@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://di3r3b4jvohoi"]
+
+[ext_resource type="Script" uid="uid://unie2lorvtm" path="res://component/light.gd" id="1_tqlf4"]
+
+[node name="Light" type="Area2D"]
+script = ExtResource("1_tqlf4")
+light_range = 250.0
+light_angle = 60.0
