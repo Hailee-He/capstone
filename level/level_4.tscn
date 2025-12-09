@@ -1,0 +1,294 @@
+[gd_scene load_steps=20 format=3 uid="uid://dtspfqrf1twsr"]
+
+[ext_resource type="Script" uid="uid://hypa07hxbgv1" path="res://level/level_4.gd" id="1_vscsl"]
+[ext_resource type="Texture2D" uid="uid://ddv2bvitawymy" path="res://asset/background/sky.png" id="2_t0khj"]
+[ext_resource type="Texture2D" uid="uid://bdymr51vkrlmp" path="res://asset/background/background.png" id="3_xsfx6"]
+[ext_resource type="Texture2D" uid="uid://ce385v83vvtqb" path="res://asset/background/foreground1.png" id="4_qae1c"]
+[ext_resource type="Texture2D" uid="uid://wnbmx8564tmm" path="res://asset/Street_Decor/Ground.png" id="5_n6f2s"]
+[ext_resource type="PackedScene" uid="uid://bko75v4spflhy" path="res://character/enemy/enemy_land.tscn" id="6_ulkxl"]
+[ext_resource type="PackedScene" uid="uid://c2erdr320pa43" path="res://character/enemy/enemy_fly.tscn" id="7_3f123"]
+[ext_resource type="PackedScene" uid="uid://cgb4omuskx68e" path="res://component/street_light.tscn" id="8_ejitl"]
+[ext_resource type="PackedScene" uid="uid://cahsjhdpq5dke" path="res://character/enemy/enemy_hurt.tscn" id="8_y2s1b"]
+[ext_resource type="PackedScene" uid="uid://dpsh1h7x6sj6a" path="res://character/enemy/enemy_big.tscn" id="9_3rm2e"]
+[ext_resource type="PackedScene" uid="uid://t6748hxu6wla" path="res://character/player/player.tscn" id="9_kuxre"]
+[ext_resource type="PackedScene" uid="uid://cc2nvlo7tdeu8" path="res://prop/prop_speed.tscn" id="10_ikwi4"]
+[ext_resource type="PackedScene" uid="uid://c41nv6m67i4ny" path="res://component/transfer.tscn" id="10_transfer"]
+[ext_resource type="PackedScene" uid="uid://udg0c6jcimw4" path="res://prop/prop_boom.tscn" id="11_b26y2"]
+[ext_resource type="PackedScene" uid="uid://ciogub6uupbt2" path="res://prop/prop_invincible.tscn" id="14_uuvd7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0v1st"]
+atlas = ExtResource("5_n6f2s")
+region = Rect2(-13.190094, 1039.4564, 1933.5175, 40.54358)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6ytt"]
+size = Vector2(5184, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b26y2"]
+size = Vector2(40.81189, 682)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y2s1b"]
+size = Vector2(61.362457, 661)
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_vscsl")
+
+[node name="Sky" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(5000, 648)
+offset_right = 5000.0
+offset_bottom = 648.0
+texture = ExtResource("2_t0khj")
+expand_mode = 1
+
+[node name="BackGround" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(5000, 648)
+offset_right = 5000.0
+offset_bottom = 648.0
+texture = ExtResource("3_xsfx6")
+expand_mode = 1
+
+[node name="Foreground" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(5000, 648)
+offset_right = 5000.0
+offset_bottom = 648.0
+texture = ExtResource("4_qae1c")
+expand_mode = 1
+
+[node name="Ground" type="TextureRect" parent="."]
+offset_left = 1.0
+offset_top = 588.0
+offset_right = 5000.0
+offset_bottom = 649.0
+texture = SubResource("AtlasTexture_0v1st")
+expand_mode = 1
+
+[node name="emeny" type="Node" parent="."]
+
+[node name="EmenyLand" parent="emeny" instance=ExtResource("6_ulkxl")]
+position = Vector2(177, 581)
+
+[node name="EnemyFly" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(370, 397)
+
+[node name="EnemyFly2" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(224, 441)
+
+[node name="EnemyFly3" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(236, 380)
+
+[node name="EnemyFly4" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(677, 432)
+
+[node name="EnemyFly5" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(442.97, 445.79993)
+
+[node name="EnemyFly6" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(325, 428)
+
+[node name="EnemyFly7" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(677, 432)
+
+[node name="EnemyFly8" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(657, 370)
+
+[node name="EnemyFly9" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(511, 414)
+
+[node name="EnemyFly10" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(523, 353)
+
+[node name="EnemyFly11" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(325, 307)
+
+[node name="EnemyFly12" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(729.97, 418.79993)
+
+[node name="EnemyFly13" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(612, 401)
+
+[node name="EnemyFly14" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(532, 478)
+
+[node name="EmenyLand2" parent="emeny" instance=ExtResource("6_ulkxl")]
+position = Vector2(736, 589)
+
+[node name="EnemyHurt" parent="emeny" instance=ExtResource("8_y2s1b")]
+position = Vector2(1077, 577)
+
+[node name="EnemyHurt2" parent="emeny" instance=ExtResource("8_y2s1b")]
+position = Vector2(1258, 576)
+
+[node name="EnemyHurt3" parent="emeny" instance=ExtResource("8_y2s1b")]
+position = Vector2(1168, 577)
+
+[node name="EnemyHurt4" parent="emeny" instance=ExtResource("8_y2s1b")]
+position = Vector2(1570, 575)
+
+[node name="EnemyHurt5" parent="emeny" instance=ExtResource("8_y2s1b")]
+position = Vector2(1460, 572)
+
+[node name="EnemyHurt6" parent="emeny" instance=ExtResource("8_y2s1b")]
+position = Vector2(1343, 578)
+
+[node name="EnemyFly15" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(1177, 441)
+
+[node name="EnemyFly16" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(1031, 485)
+
+[node name="EnemyFly17" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(1043, 424)
+
+[node name="EnemyFly18" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(1484, 476)
+
+[node name="EnemyFly19" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(1249.97, 489.79993)
+
+[node name="EnemyFly20" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(1132, 472)
+
+[node name="EnemyFly21" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(1484, 476)
+
+[node name="EnemyFly22" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(1464, 414)
+
+[node name="EnemyFly23" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(1318, 458)
+
+[node name="EnemyFly24" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(1330, 397)
+
+[node name="EnemyFly25" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(1132, 351)
+
+[node name="EnemyFly26" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(1536.97, 462.79993)
+
+[node name="EnemyFly27" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(1419, 445)
+
+[node name="EnemyBig" parent="emeny" instance=ExtResource("9_3rm2e")]
+position = Vector2(1845, 564)
+
+[node name="EnemyBig2" parent="emeny" instance=ExtResource("9_3rm2e")]
+position = Vector2(2220, 564)
+
+[node name="EnemyBig3" parent="emeny" instance=ExtResource("9_3rm2e")]
+position = Vector2(2629, 572)
+
+[node name="EnemyFly28" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(2770, 415)
+
+[node name="EnemyFly29" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(2624, 459)
+
+[node name="EnemyFly30" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(2636, 398)
+
+[node name="EnemyFly31" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(3077, 450)
+
+[node name="EnemyFly32" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(2842.97, 463.79993)
+
+[node name="EnemyFly33" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(2725, 446)
+
+[node name="EnemyFly34" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(3077, 450)
+
+[node name="EnemyFly35" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(3057, 388)
+
+[node name="EnemyFly36" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(2911, 432)
+
+[node name="EnemyFly37" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(2923, 371)
+
+[node name="EnemyFly38" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(2725, 325)
+
+[node name="EnemyFly39" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(3129.97, 436.79993)
+
+[node name="EnemyFly40" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(3012, 419)
+
+[node name="EnemyBig4" parent="emeny" instance=ExtResource("9_3rm2e")]
+position = Vector2(3539, 559)
+
+[node name="EnemyBig5" parent="emeny" instance=ExtResource("9_3rm2e")]
+position = Vector2(3813, 538)
+
+[node name="EnemyBig6" parent="emeny" instance=ExtResource("9_3rm2e")]
+position = Vector2(4355, 542)
+
+[node name="EnemyHurt7" parent="emeny" instance=ExtResource("8_y2s1b")]
+position = Vector2(2893, 556)
+
+[node name="EnemyHurt8" parent="emeny" instance=ExtResource("8_y2s1b")]
+position = Vector2(3074, 555)
+
+[node name="EnemyHurt9" parent="emeny" instance=ExtResource("8_y2s1b")]
+position = Vector2(2984, 556)
+
+[node name="EnemyHurt10" parent="emeny" instance=ExtResource("8_y2s1b")]
+position = Vector2(3386, 554)
+
+[node name="EnemyHurt11" parent="emeny" instance=ExtResource("8_y2s1b")]
+position = Vector2(3276, 551)
+
+[node name="EnemyHurt12" parent="emeny" instance=ExtResource("8_y2s1b")]
+position = Vector2(3159, 557)
+
+[node name="PropSpeed" parent="emeny" instance=ExtResource("10_ikwi4")]
+position = Vector2(1976, 581)
+
+[node name="PropSpeed2" parent="emeny" instance=ExtResource("10_ikwi4")]
+position = Vector2(2366, 579)
+
+[node name="PropInvincible" parent="emeny" instance=ExtResource("14_uuvd7")]
+position = Vector2(2762, 585)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(5000, 648)
+offset_right = 5000.0
+offset_bottom = 648.0
+color = Color(0.08235294, 0.08235294, 0.08235294, 0.3764706)
+
+[node name="StreetLight" parent="." instance=ExtResource("8_ejitl")]
+position = Vector2(796, 380)
+
+[node name="Transfer" parent="." instance=ExtResource("10_transfer")]
+position = Vector2(4894, 573)
+next_level_path = "res://level/level_finish.tscn"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2505, 650)
+shape = SubResource("RectangleShape2D_x6ytt")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(5025, 337)
+shape = SubResource("RectangleShape2D_b26y2")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-31, 316)
+shape = SubResource("RectangleShape2D_y2s1b")
+
+[node name="Player" parent="." instance=ExtResource("9_kuxre")]
+z_index = 1
+position = Vector2(279, 585)
+
+[node name="PropBoom" parent="." instance=ExtResource("11_b26y2")]
+position = Vector2(541, 589)
+
+[node name="PropInvincible" parent="." instance=ExtResource("14_uuvd7")]
+position = Vector2(373, 591)
+
+[node name="StreetLight2" parent="." instance=ExtResource("8_ejitl")]
+position = Vector2(3582, 377)

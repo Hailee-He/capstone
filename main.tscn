@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://2cfk4idva5ij"]
 
-[ext_resource type="Script" uid="uid://bds4ek1du2h6a" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Script" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://l2igvwljichv" path="res://asset/background_meun.jpg" id="2_12345"]
 [ext_resource type="FontFile" uid="uid://oro4vlpa0nk2" path="res://asset/font/RifficFree-Bold.ttf" id="3_h2yge"]
 
@@ -149,7 +149,7 @@ theme_override_constants/shadow_offset_y = 3
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("3_h2yge")
 theme_override_font_sizes/font_size = 60
-text = "where the light end"
+text = "Where the Light End"
 horizontal_alignment = 1
 
 [node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer"]

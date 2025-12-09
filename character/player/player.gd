@@ -91,15 +91,15 @@ func _ready() -> void:
 	
 	add_to_group("player")
 	flash_light.update_light_params(
-		150.0,  # 范围
-		50.0,   # 角度
-		0,    # 方向（向右）
+		150.0,  # Range
+		50.0,   # Angle
+		0,    # Direction（to the right）
 		Color(1.0, 1.0, 0.902, 0.302),
 	)
 
 	flash_light.visible = false
-	flash_light.monitoring = false  # 关闭碰撞检测
-	flash_light.monitorable = false  # 不被其他区域检测
+	flash_light.monitoring = false  # Disable collision detection
+	flash_light.monitorable = false  # Do not allow other areas to detect it
 	_update_health_bar()
 	emit_signal("health_changed", health, max_health)
 
@@ -112,7 +112,7 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("play_light"):
 		flash_light.visible = !flash_light.visible
-		flash_light.monitoring = flash_light.visible  # 同步碰撞检测状态
+		flash_light.monitoring = flash_light.visible  # Sync collision detection status
 		flash_light.monitorable = flash_light.visible
 	
 	if Input.is_action_just_pressed("use_item") or Input.is_action_just_pressed("ui_focus_next"):
@@ -122,7 +122,7 @@ func _physics_process(delta: float) -> void:
 	
 	if direction != 0:
 		velocity.x = direction * speed
-		# 翻转精灵朝向
+		# Flip sprite direction
 		sprite.flip_h = direction < 0
 		_turn_light_direction(direction == 1)
 	else:
@@ -134,17 +134,17 @@ func _turn_light_direction(is_left: bool):
 	if is_left:
 		flash_light.position = Vector2(-10, 10)
 		flash_light.update_light_params(
-			125.0,  # 范围
-			25.0,   # 角度（15度左右，总共50度）
+			125.0,  # Range
+			25.0,   # Angle (about 15 degrees each side, total 50 degrees)
 			5,
 			Color(1.0, 1.0, 0.902, 0.302),
 		)
 	else:
 		flash_light.position= Vector2(10, 10)
 		flash_light.update_light_params(
-			125.0,  # 范围
-			25.0,   # 角度（15度左右，总共50度）
-			-185,    # 方向（向右，会跟随玩家旋转）
+			125.0,  # Range
+			25.0,   # Angle (about 15 degrees each side, total 50 degrees)
+			-185,    # Direction (to the right, will follow the player rotation)
 			Color(1.0, 1.0, 0.902, 0.302),
 		)
 		
@@ -170,5 +170,5 @@ func add_invincibility(duration: float):
 	modulate.a = 1.0
 
 func _on_jumped_on_enemy():
-	# 踩到敌人时反弹
+	# Bounce when jumping on an enemy
 	velocity.y = JUMP_VELOCITY

@@ -1,0 +1,147 @@
+[gd_scene load_steps=15 format=3 uid="uid://b1p0j3ssumx22"]
+
+[ext_resource type="Script" uid="uid://cdyn6vvw3cccu" path="res://level/level_2.gd" id="1_vscsl"]
+[ext_resource type="Texture2D" uid="uid://ddv2bvitawymy" path="res://asset/background/sky.png" id="2_t0khj"]
+[ext_resource type="Texture2D" uid="uid://bdymr51vkrlmp" path="res://asset/background/background.png" id="3_xsfx6"]
+[ext_resource type="Texture2D" uid="uid://ce385v83vvtqb" path="res://asset/background/foreground1.png" id="4_qae1c"]
+[ext_resource type="Texture2D" uid="uid://wnbmx8564tmm" path="res://asset/Street_Decor/Ground.png" id="5_n6f2s"]
+[ext_resource type="PackedScene" uid="uid://bko75v4spflhy" path="res://character/enemy/enemy_land.tscn" id="6_ulkxl"]
+[ext_resource type="PackedScene" uid="uid://c2erdr320pa43" path="res://character/enemy/enemy_fly.tscn" id="7_3f123"]
+[ext_resource type="PackedScene" uid="uid://cgb4omuskx68e" path="res://component/street_light.tscn" id="8_ejitl"]
+[ext_resource type="PackedScene" uid="uid://t6748hxu6wla" path="res://character/player/player.tscn" id="9_kuxre"]
+[ext_resource type="PackedScene" uid="uid://c41nv6m67i4ny" path="res://component/transfer.tscn" id="10_transfer"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0v1st"]
+atlas = ExtResource("5_n6f2s")
+region = Rect2(-13.190094, 1039.4564, 1933.5175, 40.54358)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgj0g"]
+size = Vector2(3377, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejyio"]
+size = Vector2(40.81189, 682)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nngw5"]
+size = Vector2(61.362457, 661)
+
+[node name="Level2" type="Node2D"]
+script = ExtResource("1_vscsl")
+
+[node name="Sky" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(3000, 648)
+offset_right = 3000.0
+offset_bottom = 648.0
+texture = ExtResource("2_t0khj")
+expand_mode = 1
+
+[node name="BackGround" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(3000, 648)
+offset_right = 3000.0
+offset_bottom = 648.0
+texture = ExtResource("3_xsfx6")
+expand_mode = 1
+
+[node name="Foreground" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(3000, 648)
+offset_right = 3000.0
+offset_bottom = 648.0
+texture = ExtResource("4_qae1c")
+expand_mode = 1
+
+[node name="Ground" type="TextureRect" parent="."]
+offset_left = 1.0
+offset_top = 588.0
+offset_right = 3000.0
+offset_bottom = 649.0
+texture = SubResource("AtlasTexture_0v1st")
+expand_mode = 1
+
+[node name="emeny" type="Node" parent="."]
+
+[node name="EmenyLand" parent="emeny" instance=ExtResource("6_ulkxl")]
+position = Vector2(1203, 572)
+
+[node name="EnemyFly" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(1155, 427)
+
+[node name="EnemyFly2" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(1715, 380)
+
+[node name="EnemyFly3" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(598, 397)
+
+[node name="EnemyFly4" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(407, 386)
+
+[node name="EnemyFly5" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(717, 428)
+
+[node name="EnemyFly6" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(2330, 437)
+
+[node name="EnemyFly7" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(1433, 415)
+
+[node name="EnemyFly8" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(2072, 366)
+
+[node name="EnemyFly9" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(138, 454)
+
+[node name="EnemyFly10" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(1328, 414)
+
+[node name="EnemyFly11" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(1861, 380)
+
+[node name="EnemyFly12" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(667, 332)
+
+[node name="EnemyFly13" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(476, 321)
+
+[node name="EnemyFly14" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(786, 363)
+
+[node name="EnemyFly15" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(1663, 466)
+
+[node name="EnemyFly16" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(1533, 421)
+
+[node name="EnemyFly17" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(2190, 349)
+
+[node name="EnemyFly18" parent="emeny" instance=ExtResource("7_3f123")]
+position = Vector2(200, 441)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(3000, 648)
+offset_right = 3000.0
+offset_bottom = 648.0
+color = Color(0.08235294, 0.08235294, 0.08235294, 0.3764706)
+
+[node name="StreetLight" parent="." instance=ExtResource("8_ejitl")]
+position = Vector2(852, 377)
+
+[node name="Transfer" parent="." instance=ExtResource("10_transfer")]
+position = Vector2(2907, 568)
+next_level_path = "res://level/level_3.tscn"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1601.5, 650)
+shape = SubResource("RectangleShape2D_rgj0g")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(3011, 338)
+shape = SubResource("RectangleShape2D_ejyio")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-31, 316)
+shape = SubResource("RectangleShape2D_nngw5")
+
+[node name="Player" parent="." instance=ExtResource("9_kuxre")]
+position = Vector2(264, 573)

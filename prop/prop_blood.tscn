@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b35lg8grygh0h"]
+[gd_scene load_steps=4 format=3 uid="uid://b35lg8grygh0h"]
 
 [ext_resource type="Script" uid="uid://c42jgcbyt7jlt" path="res://prop/prop_blood.gd" id="1_dcsst"]
+[ext_resource type="Texture2D" uid="uid://bcmdw2qx6ero2" path="res://asset/prop/LifePot.png" id="2_dmovq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_speed"]
 radius = 15.0
@@ -8,12 +9,10 @@ radius = 15.0
 [node name="PropBlood" type="Node2D"]
 script = ExtResource("1_dcsst")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -15.0
-offset_top = -15.0
-offset_right = 15.0
-offset_bottom = 15.0
-color = Color(0, 0.74902, 1, 1)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.3841858e-07, 0)
+scale = Vector2(1.7777778, 2.1818182)
+texture = ExtResource("2_dmovq")
 
 [node name="Area2D" type="Area2D" parent="."]
 

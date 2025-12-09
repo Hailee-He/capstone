@@ -1,0 +1,99 @@
+[gd_scene load_steps=12 format=3 uid="uid://be2o27wm0st8x"]
+
+[ext_resource type="Script" uid="uid://b4uqq8hcj62qx" path="res://level/level_finish.gd" id="1_j1ubx"]
+[ext_resource type="Texture2D" uid="uid://ddv2bvitawymy" path="res://asset/background/sky.png" id="2_t0khj"]
+[ext_resource type="Texture2D" uid="uid://bdymr51vkrlmp" path="res://asset/background/background.png" id="3_xsfx6"]
+[ext_resource type="Texture2D" uid="uid://ce385v83vvtqb" path="res://asset/background/foreground1.png" id="4_qae1c"]
+[ext_resource type="Texture2D" uid="uid://wnbmx8564tmm" path="res://asset/Street_Decor/Ground.png" id="5_n6f2s"]
+[ext_resource type="PackedScene" uid="uid://cgb4omuskx68e" path="res://component/street_light.tscn" id="8_ejitl"]
+[ext_resource type="PackedScene" uid="uid://t6748hxu6wla" path="res://character/player/player.tscn" id="9_kuxre"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0v1st"]
+atlas = ExtResource("5_n6f2s")
+region = Rect2(-13.190094, 1039.4564, 1933.5175, 40.54358)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ground"]
+size = Vector2(1400, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhh8r"]
+size = Vector2(61.362457, 661)
+
+[sub_resource type="LabelSettings" id="LabelSettings_victory"]
+font_size = 48
+font_color = Color(1, 0.843137, 0, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="LevelFinish" type="Node2D"]
+script = ExtResource("1_j1ubx")
+
+[node name="Sky" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(1152, 648)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_t0khj")
+expand_mode = 1
+
+[node name="BackGround" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(1152, 648)
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("3_xsfx6")
+expand_mode = 1
+
+[node name="Foreground" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(1152, 648)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_qae1c")
+expand_mode = 1
+
+[node name="Ground" type="TextureRect" parent="."]
+offset_left = 1.0
+offset_top = 588.0
+offset_right = 1157.0
+offset_bottom = 649.0
+texture = SubResource("AtlasTexture_0v1st")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1152, 648)
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.08235294, 0.08235294, 0.08235294, 0.3764706)
+
+[node name="StreetLight" parent="." instance=ExtResource("8_ejitl")]
+position = Vector2(852, 377)
+
+[node name="Player" parent="." instance=ExtResource("9_kuxre")]
+position = Vector2(271, 576)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(636, 645)
+shape = SubResource("RectangleShape2D_ground")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-20, 296)
+shape = SubResource("RectangleShape2D_rhh8r")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1186, 311)
+shape = SubResource("RectangleShape2D_rhh8r")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VictoryLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 100.0
+offset_right = 200.0
+offset_bottom = 250.0
+grow_horizontal = 2
+text = "Escape successful! 
+Press ESC to return to the main menu."
+label_settings = SubResource("LabelSettings_victory")
+horizontal_alignment = 1

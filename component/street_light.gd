@@ -4,20 +4,20 @@ extends Node2D
 @onready var light_scene_r: Light = $lightSceneR
 
 func _ready() -> void:
-	# 配置路灯光线参数
-	# 路灯向下照射，角度较大
+	# Configure streetlight light parameters
+	# The streetlights shine downwards with a large angle
 	light_scene_l.update_light_params(
-		255.0,  # 范围
-		21.0,  # 角度
-		90.0,   # 方向（向下）
-		Color(0.631, 0.631, 0.533, 0.192)  # 光线颜色
+		255.0,  # Range
+		21.0,   # Angle
+		90.0,   # Direction (downwards)
+		Color(0.631, 0.631, 0.533, 0.192)  # Light color
 	)
 	
 	light_scene_r.update_light_params(
-		255.0,  # 范围
-		21,  # 角度
-		90.0,   # 方向（向下）
-		Color(0.631, 0.631, 0.533, 0.192)  # 光线颜色
+		255.0,  # Range
+		21,     # Angle
+		90.0,   # Direction (downwards)
+		Color(0.631, 0.631, 0.533, 0.192)  # Light color
 	)
 
 

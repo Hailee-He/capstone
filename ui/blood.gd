@@ -3,7 +3,7 @@ extends Control
 @onready var health_label: Label = $HealthLabel
 
 func _ready():
-	# 等待一帧以确保 Player 已准备好
+	# Wait for one frame to ensure the Player is ready
 	await get_tree().process_frame
 	var player = get_tree().get_first_node_in_group("player")
 	if player:

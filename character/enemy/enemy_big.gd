@@ -1,5 +1,5 @@
 extends CharacterBody2D
-# 这个敌人主要是阻碍玩家的行动，体型较大但移动缓慢, 伤害较低
+# This enemy mainly hinders the player's movement. It is large in size but moves slowly, with low damage.
 
 @export var max_health: float = 100.0
 var health: float = max_health
@@ -29,13 +29,13 @@ func _physics_process(delta: float) -> void:
 
 	var player = get_tree().get_first_node_in_group("player")
 	if player:
-		# 只在X轴移动
+		# Only move along the X-axis
 		if abs(player.global_position.x - global_position.x) > 10:
 			velocity.x = sign(player.global_position.x - global_position.x) * speed
 		else:
 			velocity.x = 0
 		
-		# 翻转
+		# Flip the sprite
 		if velocity.x > 0:
 			if has_node("Sprite2D"):
 				$Sprite2D.flip_h = false
@@ -45,7 +45,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-	# 碰撞伤害逻辑
+	# Collision damage logic
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
@@ -55,10 +55,10 @@ func _physics_process(delta: float) -> void:
 				attack_cooldown = 3.0
 
 
-# 受到伤害
+# Take damage
 func take_damage(amount: int) -> void:
 	health -= amount
-	modulate = Color(1, 0.5, 0.5) # 变红
+	modulate = Color(1, 0.5, 0.5) # Turn red
 	await get_tree().create_timer(0.1).timeout
 	modulate = Color(1, 1, 1)
 	

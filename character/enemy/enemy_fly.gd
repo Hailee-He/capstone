@@ -1,24 +1,22 @@
 extends CharacterBody2D
 
-
-# 状态枚举
+# State enumeration
 enum State {
-	PATROL,      # 巡逻
-	CHASE,       # 追击玩家
-	FLEE         # 逃离光线
+	PATROL,      # Patrolling
+	CHASE,       # Chasing the player
+	FLEE         # Fleeing from the light
 }
 
-# 基础参数
+# Basic parameters
 const PATROL_SPEED = 50.0
 const CHASE_SPEED = 150.0
 const FLEE_SPEED = 200.0
 
-
-# 巡逻参数
+# Patrolling parameters
 @export var patrol_left: float = -100.0
 @export var patrol_right: float = 100.0
 
-# 检测参数
+# Detection parameters
 @export var detect_range: float = 300.0
 
 var current_state: State = State.PATROL
@@ -35,11 +33,12 @@ var is_returning: bool = false
 
 
 func _ready() -> void:
+	# Store the initial position of the enemy
 	start_position = global_position
 
 
 func _physics_process(delta: float) -> void:
-	# 如果正在返回起点
+	# If the enemy is returning to the starting position
 	if is_returning:
 		_return_to_start(delta)
 	else:
@@ -55,9 +54,10 @@ func _physics_process(delta: float) -> void:
 
 
 func _patrol(_delta: float) -> void:
+	# Calculate the target patrol position
 	var target_x = start_position.x + (patrol_right if patrol_direction > 0 else patrol_left)
 	
-	# 到达边界时转向
+	# Change direction when reaching the patrol boundary
 	if (patrol_direction > 0 and global_position.x >= target_x) or \
 	   (patrol_direction < 0 and global_position.x <= target_x):
 		patrol_direction *= -1
@@ -65,9 +65,10 @@ func _patrol(_delta: float) -> void:
 	velocity.x = patrol_direction * PATROL_SPEED
 	velocity.y = 0
 	
+	# Flip the sprite depending on direction
 	sprite.flip_h = patrol_direction < 0
 	
-	# 检测玩家
+	# Detect the player
 	_detect_player()
 
 
@@ -79,8 +80,10 @@ func _chase_player(_delta: float) -> void:
 	var direction = (player.global_position - global_position).normalized()
 	velocity = direction * CHASE_SPEED
 	
+	# Flip the sprite depending on player direction
 	sprite.flip_h = direction.x < 0
 
+	# Check for collision with the player
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		if collision.get_collider() == player:
@@ -88,14 +91,15 @@ func _chase_player(_delta: float) -> void:
 
 
 func _flee_from_player(delta: float) -> void:
+	# Update the flee timer
 	flee_timer -= delta
 	
 	if flee_timer <= 0:
-		# 冷却时间结束后检查是否还能看到玩家
+		# After cooldown, check if the enemy can still see the player
 		if _can_see_player():
 			current_state = State.CHASE
 		else:
-			# 飞回起始位置
+			# Start returning to the starting position
 			is_returning = true
 		return
 	
@@ -106,20 +110,22 @@ func _flee_from_player(delta: float) -> void:
 
 
 func _detect_player() -> void:
+	# Detect the player if not already assigned
 	if not player:
 		_find_player()
 		return
 	
+	# Switch to chase state if the player is detected
 	if _can_see_player():
 		current_state = State.CHASE
 
-# 查找玩家
+# Find the player in the scene
 func _find_player() -> void:
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
 		player = players[0]
 
-# 检查是否能看到玩家
+# Check if the enemy can see the player
 func _can_see_player() -> bool:
 	if not player:
 		return false
@@ -129,19 +135,20 @@ func _can_see_player() -> bool:
 
 
 func _attack_player() -> void:
+	# Attack the player and apply damage
 	if player and player.has_method("attacked"):
-		player.attacked( Global.emeny_fly_demage)
+		player.attacked(Global.emeny_fly_demage)
 		current_state = State.FLEE
 		flee_timer = attack_flee_cooldown
-		# 添加随机偏移逃离方向
-		var random_angle = randf_range(-PI/3, PI/3)  # ±90度随机偏移
+		# Add random deviation to the fleeing direction
+		var random_angle = randf_range(-PI/3, PI/3)  # ±90 degrees random offset
 		var base_direction = (global_position - player.global_position).normalized()
 		var rotated_direction = base_direction.rotated(random_angle)
 		velocity = rotated_direction * FLEE_SPEED
 
 
 func _return_to_start(_delta: float) -> void:
-	# 返回途中也检测玩家
+	# While returning, also check for the player
 	if _can_see_player():
 		is_returning = false
 		current_state = State.CHASE
@@ -150,7 +157,7 @@ func _return_to_start(_delta: float) -> void:
 	var direction = (start_position - global_position).normalized()
 	var distance = global_position.distance_to(start_position)
 	
-	# 接近起点时切换回巡逻
+	# Switch to patrol state when close to the starting position
 	if distance < 10.0:
 		global_position = start_position
 		is_returning = false
@@ -161,8 +168,9 @@ func _return_to_start(_delta: float) -> void:
 	sprite.flip_h = direction.x < 0
 
 
-# 被光线照到（由 Light 节点调用或通过 Area2D 检测）
+# When the enemy is hit by the light (triggered by Light node or Area2D detection)
 func _on_light_entered() -> void:
+	# Switch to flee state when detected by light
 	if current_state != State.FLEE:
 		current_state = State.FLEE
 		flee_timer = flee_cooldown
@@ -170,12 +178,13 @@ func _on_light_entered() -> void:
 
 
 func _on_light_exited() -> void:
+	# Light has exited, stop fleeing
 	is_in_light = false
 
 
-# 光线检测器信号
+# Light detection area signal
 func _on_light_detector_area_entered(area: Area2D) -> void:
-	# 检查是否是 Light 类型
+	# Check if it's a Light type
 	if area is Light:
 		_on_light_entered()
 

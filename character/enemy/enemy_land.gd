@@ -1,30 +1,30 @@
 extends CharacterBody2D
 
-# 状态枚举
+# State enumeration
 enum State {
-	IDLE,        # 静止
-	WANDER,      # 随机游荡
-	CHARGE,      # 冲锋攻击
-	COOLDOWN     # 冷却中
+	IDLE,        # Idle
+	WANDER,      # Wandering randomly
+	CHARGE,      # Charge attack
+	COOLDOWN     # Cooling down
 }
 
-# 基础参数
+# Basic parameters
 const WANDER_SPEED = 80.0
 const CHARGE_SPEED = 400.0
 
-# 存活和冷却参数
-@export var lifetime: float = 10.0  # 存活时间（秒）
-@export var attack_cooldown: float = 3.0  # 攻击后冷却时间
+# Lifespan and cooldown parameters
+@export var lifetime: float = 10.0  # Lifespan (in seconds)
+@export var attack_cooldown: float = 3.0  # Cooldown time after attack
 
 var current_state: State = State.WANDER
 var life_timer: float = 0.0
 var cooldown_timer: float = 0.0
 var player: CharacterBody2D = null
 var is_in_flashlight: bool = false
-var player_flashlight: Light = null  # 玩家手电筒引用
+var player_flashlight: Light = null  # Reference to the player's flashlight
 
-# 随机游荡参数
-var wander_direction: int = 1  # 1 = 右，-1 = 左
+# Wandering parameters
+var wander_direction: int = 1  # 1 = Right, -1 = Left
 var wander_timer: float = 0.0
 var idle_timer: float = 0.0
 var is_wandering: bool = true
@@ -33,7 +33,7 @@ var is_wandering: bool = true
 
 var ally_detector: RayCast2D
 
-# 预加载场景用于静态生成
+# Preload scene for static generation
 static var enemy_scene: PackedScene = null
 
 func _ready() -> void:
@@ -63,17 +63,17 @@ func _physics_process(delta: float) -> void:
 	if current_state != State.CHARGE and ally_detector.is_colliding():
 		velocity.x = 0
 	
-	# 添加重力
+	# Add gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
-	# 生命倒计时
+	# Life countdown
 	life_timer -= delta
 	if life_timer <= 0:
-		queue_free()  # 销毁自己
+		queue_free()  # Destroy itself
 		return
 	
-	# 检测手电筒光线，优先级最高
+	# Check flashlight exposure, highest priority
 	if is_in_flashlight and current_state != State.CHARGE and current_state != State.COOLDOWN:
 		current_state = State.CHARGE
 	
@@ -102,22 +102,22 @@ func _idle_behavior(delta: float) -> void:
 func _wander_behavior(delta: float) -> void:
 	wander_timer -= delta
 	
-	# 检测边缘或墙壁，转向
+	# Check edges or walls and turn around
 	if is_on_wall() or not _check_ground_ahead():
 		wander_direction *= -1
 		_reset_wander_timer()
 	
-	# 定时改变方向或停止
+	# Change direction or stop after a random time
 	if wander_timer <= 0:
-		if randf() < 0.3:  # 30%概率停下来休息
+		if randf() < 0.3:  # 30% chance to stop and rest
 			current_state = State.IDLE
 			idle_timer = randf_range(1.0, 3.0)
 			velocity.x = 0
-		else:  # 70%概率换方向继续走
+		else:  # 70% chance to change direction and continue
 			wander_direction = 1 if randf() < 0.5 else -1
 			_reset_wander_timer()
 	
-	# 移动
+	# Move
 	velocity.x = wander_direction * WANDER_SPEED
 	sprite.flip_h = wander_direction < 0
 
@@ -142,18 +142,18 @@ func _charge_at_player(_delta: float) -> void:
 		current_state = State.WANDER
 		return
 	
-	# 如果手电筒关闭了，停止冲锋
+	# Stop charging if the flashlight is off
 	if not is_in_flashlight:
 		current_state = State.WANDER
 		return
 	
-	# 朝玩家冲锋（只改变X方向，保留重力影响的Y方向）
+	# Charge towards the player (only change X direction, retain gravity's effect on Y)
 	var direction = (player.global_position - global_position).normalized()
 	velocity.x = direction.x * CHARGE_SPEED
 	
 	sprite.flip_h = direction.x < 0
 	
-	# 检测是否碰到玩家
+	# Check if collided with the player
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		if collision.get_collider() == player:
@@ -162,7 +162,7 @@ func _charge_at_player(_delta: float) -> void:
 			
 
 func _cooldown_behavior(delta: float) -> void:
-	velocity.x = 0  # 只停止水平移动
+	velocity.x = 0  # Stop horizontal movement
 	cooldown_timer -= delta
 	
 	if cooldown_timer <= 0:
@@ -174,16 +174,16 @@ func _attack_player() -> void:
 	if player and player.has_method("attacked"):
 		player.attacked(Global.emeny_land_demage)
 		
-		# 击退玩家
+		# Knockback the player
 		var knockback_direction = (player.global_position - global_position).normalized()
-		var knockback_force = 100.0  # 至少100px的击退
+		var knockback_force = 100.0  # Knockback by at least 100px
 		
-		# 如果玩家有velocity属性，施加击退
+		# If the player has velocity, apply knockback
 		if "velocity" in player:
-			player.velocity.x = knockback_direction.x * knockback_force * 10  # 乘以10增加击退速度
-			player.velocity.y = -200  # 向上击飞一点
+			player.velocity.x = knockback_direction.x * knockback_force * 10  # Multiply by 10 for stronger knockback
+			player.velocity.y = -200  # Knock the player up a little
 		
-		# 进入冷却状态
+		# Enter cooldown state
 		current_state = State.COOLDOWN
 		cooldown_timer = attack_cooldown
 
@@ -210,7 +210,7 @@ func _on_light_detector_area_exited(area: Area2D) -> void:
 
 
 static func spawn_at(spawn_position: Vector2, parent: Node) -> CharacterBody2D:
-	# 懒加载场景
+	# Lazy load the scene
 	if enemy_scene == null:
 		enemy_scene = load("res://character/enemy/emeny_land.tscn")
 	
