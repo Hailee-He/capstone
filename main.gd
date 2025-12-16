@@ -21,7 +21,9 @@ func _ready() -> void:
 	quit_button.modulate.a = 0
 	await get_tree().process_frame
 	_animate_buttons_entrance()
-
+	
+	# Play the main menu background music when the menu scene loads.
+	AudioManager.play_bgm("menu", 0.6)
 
 func _animate_title() -> void:
 	var tween = create_tween()
@@ -59,6 +61,10 @@ func _on_quit_button_unhover() -> void:
 
 
 func _on_start_button_pressed() -> void:
+	# UI click SFX + fade out menu BGM before changing scene.
+	AudioManager.play_sfx("ui_click", -6.0, 0.05)
+	AudioManager.stop_bgm(0.25)
+
 	var tween = create_tween()
 	tween.tween_property(start_button, "scale", Vector2(0.95, 0.95), 0.1)
 	tween.tween_property(start_button, "scale", Vector2(1.0, 1.0), 0.1)
