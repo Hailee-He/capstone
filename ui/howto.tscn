@@ -1,0 +1,115 @@
+[gd_scene load_steps=10 format=3 uid="uid://dewieswbpdb6d"]
+
+[ext_resource type="Script" uid="uid://s8cgravwvgwk" path="res://ui/howto.gd" id="1_fht8w"]
+[ext_resource type="Texture2D" uid="uid://l2igvwljichv" path="res://asset/background_meun.jpg" id="2_qhmto"]
+[ext_resource type="FontFile" uid="uid://oro4vlpa0nk2" path="res://asset/font/RifficFree-Bold.ttf" id="3_m0063"]
+[ext_resource type="Texture2D" uid="uid://3v4ug73l0iyj" path="res://asset/UI/KeyQ.png" id="4_60u7f"]
+[ext_resource type="Texture2D" uid="uid://cvphkkkhjc7e0" path="res://asset/UI/KeyW.png" id="5_mxxur"]
+[ext_resource type="Texture2D" uid="uid://h1kyavd5paog" path="res://asset/UI/KeyA.png" id="6_s1620"]
+[ext_resource type="Texture2D" uid="uid://s0l36j3cynvo" path="res://asset/UI/KeyLeft.png" id="7_45klp"]
+[ext_resource type="Texture2D" uid="uid://7hr8j140gg65" path="res://asset/UI/KeyD.png" id="8_bm874"]
+[ext_resource type="Texture2D" uid="uid://byvxql2c3uesf" path="res://asset/UI/KeyRight.png" id="9_s65if"]
+
+[node name="Howto" type="Control" node_paths=PackedStringArray("back_button")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_fht8w")
+back_button = NodePath("CenterContainer/VBoxContainer/Button")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -12.0
+offset_right = 1130.0
+offset_bottom = 622.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qhmto")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 220.0
+offset_top = 74.5
+offset_right = 892.0
+offset_bottom = 533.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.8, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_m0063")
+theme_override_font_sizes/font_size = 60
+text = "How to Play"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0.019607844, 1)
+theme_override_colors/font_outline_color = Color(0.7647059, 0.5019608, 0.19607843, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("3_m0063")
+theme_override_font_sizes/font_size = 30
+text = "Stay in the light to be safe.  
+Darkness is dangerous."
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_m0063")
+theme_override_font_sizes/font_size = 30
+text = "Move      /     or    /
+Jump
+Flashlight"
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="Q" type="Sprite2D" parent="."]
+position = Vector2(560, 430)
+scale = Vector2(2, 2)
+texture = ExtResource("4_60u7f")
+
+[node name="W" type="Sprite2D" parent="."]
+position = Vector2(500, 390)
+scale = Vector2(2, 2)
+texture = ExtResource("5_mxxur")
+
+[node name="A" type="Sprite2D" parent="."]
+position = Vector2(475, 350)
+scale = Vector2(2, 2)
+texture = ExtResource("6_s1620")
+
+[node name="left" type="Sprite2D" parent="."]
+position = Vector2(525, 350)
+scale = Vector2(2, 2)
+texture = ExtResource("7_45klp")
+
+[node name="D" type="Sprite2D" parent="."]
+position = Vector2(595, 350)
+scale = Vector2(2, 2)
+texture = ExtResource("8_bm874")
+
+[node name="right" type="Sprite2D" parent="."]
+position = Vector2(645, 350)
+scale = Vector2(2, 2)
+texture = ExtResource("9_s65if")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://2cfk4idva5ij"]
+[gd_scene load_steps=11 format=3 uid="uid://2cfk4idva5ij"]
 
 [ext_resource type="Script" uid="uid://bds4ek1du2h6a" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://l2igvwljichv" path="res://asset/background_meun.jpg" id="2_12345"]
 [ext_resource type="FontFile" uid="uid://oro4vlpa0nk2" path="res://asset/font/RifficFree-Bold.ttf" id="3_h2yge"]
+[ext_resource type="Texture2D" uid="uid://bv3iqyw8p81t4" path="res://asset/UI/howtoplay.png" id="4_1bvp3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_start_normal"]
 bg_color = Color(0.2, 0.6, 1, 0.19607843)
@@ -187,3 +188,16 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_quit_normal")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_quit_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_quit_hover")
 text = "Quit"
+
+[node name="HowToPlayButton" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(350, 150)
+layout_mode = 0
+offset_left = 364.0
+offset_top = 192.0
+offset_right = 742.0
+offset_bottom = 342.0
+size_flags_vertical = 4
+size_flags_stretch_ratio = 15.17
+texture_normal = ExtResource("4_1bvp3")
+texture_pressed = ExtResource("4_1bvp3")
+stretch_mode = 6
