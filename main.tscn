@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://2cfk4idva5ij"]
+[gd_scene load_steps=13 format=3 uid="uid://2cfk4idva5ij"]
 
 [ext_resource type="Script" uid="uid://bds4ek1du2h6a" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://l2igvwljichv" path="res://asset/background_meun.jpg" id="2_12345"]
 [ext_resource type="FontFile" uid="uid://oro4vlpa0nk2" path="res://asset/font/RifficFree-Bold.ttf" id="3_h2yge"]
-[ext_resource type="Texture2D" uid="uid://bv3iqyw8p81t4" path="res://asset/UI/howtoplay.png" id="4_1bvp3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_start_normal"]
 bg_color = Color(0.2, 0.6, 1, 0.19607843)
@@ -87,6 +86,47 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 shadow_color = Color(1, 0.3, 0.3, 0.6)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2yge"]
+bg_color = Color(0.6784314, 0.58431375, 0.08235294, 0.3137255)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 0.5019608)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
+bg_color = Color(0.6, 0.6, 0.13333334, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.8, 0.8, 0.047058824, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.3019608)
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
+bg_color = Color(0.6, 0.6, 0.03137255, 0.3882353)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.8, 0.8, 0.03137255, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.6, 0.6, 0.03137255, 0.3882353)
 shadow_size = 8
 
 [node name="Main" type="Control"]
@@ -189,15 +229,18 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_quit_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_quit_hover")
 text = "Quit"
 
-[node name="HowToPlayButton" type="TextureButton" parent="."]
-custom_minimum_size = Vector2(350, 150)
-layout_mode = 0
-offset_left = 364.0
-offset_top = 192.0
-offset_right = 742.0
-offset_bottom = 342.0
+[node name="HowtoPlayButton" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
-size_flags_stretch_ratio = 15.17
-texture_normal = ExtResource("4_1bvp3")
-texture_pressed = ExtResource("4_1bvp3")
-stretch_mode = 6
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 0.011764706, 1)
+theme_override_colors/font_hover_color = Color(0.9490196, 0.9490196, 0.28235295, 0.9882353)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_h2yge")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1bvp3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lquwl")
+text = "How To Play"
